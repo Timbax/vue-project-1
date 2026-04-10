@@ -1,11 +1,9 @@
 <template>
-  <ElContador />
-  <ListaTareas />
+  <MainView />
 </template>
 
 <script setup>
-import ElContador from "./components/ElContador.vue";
-import ListaTareas from "./components/ListaTareas.vue";
+import MainView from "./views/MainView.vue";
 </script>
 
 <style scoped></style>
