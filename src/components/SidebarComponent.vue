@@ -2,10 +2,11 @@
   <div class="sidebar">
     <h2>Barra lateral</h2>
     <ul>
-      <li><router-link to="/">Inicio</router-link></li>
-      <li><router-link to="/el-contador">Contador</router-link></li>
-      <li><router-link to="/lista-de-tareas">Lista de tareas</router-link></li>
-      <li><router-link to="/saludos">Saludos</router-link></li>
+      <li><RouterLink to="/">Inicio</RouterLink></li>
+      <li><RouterLink to="/el-contador">Contador</RouterLink></li>
+      <li><RouterLink to="/lista-de-tareas">Lista de tareas</RouterLink></li>
+      <li><RouterLink to="/saludos">Saludos</RouterLink></li>
+      <li><RouterLink to="/registrar">Registro</RouterLink></li>
     </ul>
   </div>
 </template>

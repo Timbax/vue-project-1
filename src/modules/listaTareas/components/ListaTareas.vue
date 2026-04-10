@@ -12,6 +12,7 @@
 
 <script setup>
 import { ref } from "vue";
+/* import { reactive } from "vue"; */
 
 const tareas = ref([]);
 const nuevaTarea = ref("");
@@ -20,6 +21,11 @@ const addTarea = () => {
   tareas.value.push(nuevaTarea.value);
   nuevaTarea.value = "";
 };
+
+/* const addTarea = () => {
+  tareas.push(nuevaTarea.value);
+  nuevaTarea.value = "";
+}; */
 
 const borrarTarea = (index) => {
   tareas.value.splice(index, 1);
