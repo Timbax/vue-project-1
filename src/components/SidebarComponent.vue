@@ -13,15 +13,17 @@
   </div>
 </template>
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, watchEffect } from "vue";
 import { RouterLink } from "vue-router";
 import { useRegistrarStore } from "../modules/registro/stores/registrarStore";
-
 const registrarStore = useRegistrarStore();
+
 const nombre = ref(registrarStore.nombre.value);
 const email = ref(registrarStore.email.value);
 
+// ============================================================
 // OPCIÓN 1: watch con getter function (función flecha)
+// ============================================================
 // Observa cambios en registrarStore.nombre
 watch(
   () => registrarStore.nombre,
@@ -38,7 +40,9 @@ watch(
   }
 );
 
+// ============================================================
 // ALTERNATIVA: watch con opciones avanzadas
+// ============================================================
 // watch(
 //   () => registrarStore.nombre,
 //   (newValue) => {
@@ -46,6 +50,41 @@ watch(
 //   },
 //   { deep: true } // Para objetos anidados
 // );
+
+// ============================================================
+// OPCIÓN 3: watchEffect (ALTERNATIVA CORRECTA)
+// ============================================================
+// watchEffect es diferente a watch:
+// - NO requiere especificar qué observar
+// - Automáticamente detecta todas las dependencias reactivas usadas
+// - Se ejecuta cada vez que cambia cualquier dependencia
+// - Útil para efectos secundarios complejos
+//
+// SINTAXIS CORRECTA:
+// watchEffect(() => {
+//   // El código aquí accede a propiedades reactivas
+//   // Vue automáticamente detecta qué está siendo usado
+//   // Si registrarStore.nombre cambia, este efecto se ejecuta
+//   nombre.value = registrarStore.nombre;
+//   email.value = registrarStore.email;
+// });
+//
+// VENTAJAS de watchEffect:
+// ✓ No necesitas especificar dependencias manualmente
+// ✓ Código más limpio para múltiples dependencias
+// ✓ Acceso directo a los valores (no necesita getter function)
+// ✓ Ideal para sincronizar múltiples valores a la vez
+//
+// DESVENTAJAS de watchEffect:
+// ✗ No tienes acceso al valor anterior (no hay newValue ni oldValue)
+// ✗ Se ejecuta automáticamente en la creación del componente
+// ✗ Menos control sobre cuándo se ejecuta
+//
+// NOTA: Para este caso de uso, watch es mejor porque:
+// - Necesitas control sobre cada propiedad individualmente
+// - watchEffect sería overkill para sincronización simple
+// - watch es más explícito y fácil de entender
+// ============================================================
 </script>
 <style scope>
 .sidebar {
