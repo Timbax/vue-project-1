@@ -29,7 +29,7 @@ watch(
   () => registrarStore.nombre,
   (newValue) => {
     nombre.value = newValue;
-  }
+  },
 );
 
 // OPCIÓN 2: watch con getter function para email
@@ -37,7 +37,7 @@ watch(
   () => registrarStore.email,
   (newValue) => {
     email.value = newValue;
-  }
+  },
 );
 
 // ============================================================
