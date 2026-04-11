@@ -13,15 +13,39 @@
   </div>
 </template>
 <script setup>
-import { computed } from "vue";
+import { ref, watch } from "vue";
 import { RouterLink } from "vue-router";
 import { useRegistrarStore } from "../modules/registro/stores/registrarStore";
 
 const registrarStore = useRegistrarStore();
+const nombre = ref(registrarStore.nombre.value);
+const email = ref(registrarStore.email.value);
 
-// Usando computed para crear referencias reactivas que se actualizan automáticamente
-const nombre = computed(() => registrarStore.nombre);
-const email = computed(() => registrarStore.email);
+// OPCIÓN 1: watch con getter function (función flecha)
+// Observa cambios en registrarStore.nombre
+watch(
+  () => registrarStore.nombre,
+  (newValue) => {
+    nombre.value = newValue;
+  }
+);
+
+// OPCIÓN 2: watch con getter function para email
+watch(
+  () => registrarStore.email,
+  (newValue) => {
+    email.value = newValue;
+  }
+);
+
+// ALTERNATIVA: watch con opciones avanzadas
+// watch(
+//   () => registrarStore.nombre,
+//   (newValue) => {
+//     nombre.value = newValue;
+//   },
+//   { deep: true } // Para objetos anidados
+// );
 </script>
 <style scope>
 .sidebar {
