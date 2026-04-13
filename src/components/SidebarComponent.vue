@@ -1,8 +1,8 @@
 <template>
   <div class="sidebar">
     <h2>Bienvenido</h2>
-    <h4>Hola:{{ nombre }}</h4>
-    <h4>Tu Correo es: {{ email }}</h4>
+    <h4>Hola:{{ registrarStore.nombre }}</h4>
+    <h4>Tu Correo es: {{ registrarStore.email }}</h4>
     <ul>
       <li><RouterLink to="/">Inicio</RouterLink></li>
       <li><RouterLink to="/el-contador">Contador</RouterLink></li>
@@ -13,32 +13,31 @@
   </div>
 </template>
 <script setup>
-import { ref, watch, watchEffect } from "vue";
+/* import { ref, watch, watchEffect } from "vue"; */
 import { RouterLink } from "vue-router";
 import { useRegistrarStore } from "../modules/registro/stores/registrarStore";
 const registrarStore = useRegistrarStore();
 
-const nombre = ref(registrarStore.nombre.value);
-const email = ref(registrarStore.email.value);
+/* const nombre = ref();
+const email = ref(); */
 
 // ============================================================
 // OPCIÓN 1: watch con getter function (función flecha)
 // ============================================================
 // Observa cambios en registrarStore.nombre
-watch(
+
+/* watch(
   () => registrarStore.nombre,
   (newValue) => {
     nombre.value = newValue;
   },
 );
-
-// OPCIÓN 2: watch con getter function para email
 watch(
   () => registrarStore.email,
   (newValue) => {
     email.value = newValue;
   },
-);
+); */
 
 // ============================================================
 // ALTERNATIVA: watch con opciones avanzadas
